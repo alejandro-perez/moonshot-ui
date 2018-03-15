@@ -14,6 +14,7 @@ pipeline {
         }
         stage('build') {
             steps {
+		sh 'git clean -af'
                 sh 'sh autogen.sh'
                 sh './configure'
                 sh 'make'
