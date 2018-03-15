@@ -8,9 +8,15 @@ pipeline {
                 sh 'apt-get dist-upgrade'
                 sh 'apt-get install -y build-essential automake autoconf libtool autopoint pkg-config libgtk2.0-dev libgee-dev libnewt-dev valac desktop-file-utils libssl-dev libdbus-glib-1-dev libgnome-keyring-dev git dh-autoreconf devscripts'
         		sh 'git clean -df'
+                sh 'debchange "Add CLI"'
                 sh 'sh autogen.sh'
                 sh './configure'
-                sh 'make'
+                sh 'make dist'
+                sh 'mv moonshot-ui-1.0.6.tar.xz ../moonshot-ui_1.0.6.orig.tar.xz'
+                sh 'debuild -us -uc'
+                sh 'mkdir build'
+                sh 'cp ../*.deb build'
+                archiveArtifacts 'build/*.deb'
                 cleanWs notFailBuild: true
             }
         }
