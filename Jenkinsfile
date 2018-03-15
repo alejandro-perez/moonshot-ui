@@ -8,7 +8,7 @@ pipeline {
                     apt-get -y update
                     apt-get -y dist-upgrade
                     #apt-get install -y build-essential automake autoconf libtool autopoint pkg-config libgtk2.0-dev libgee-dev libnewt-dev valac desktop-file-utils libssl-dev libdbus-glib-1-dev libgnome-keyring-dev git dh-autoreconf devscripts
-                    apt-get install git
+                    apt-get install -y git
                     git merge origin/debian
                     debchange "Add CLI"
                     sh autogen.sh
