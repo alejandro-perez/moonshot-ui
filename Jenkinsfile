@@ -1,4 +1,4 @@
-pipeline {
+apipeline {
     agent none
     stages {
         stage('debian7') {
